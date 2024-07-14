@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import { setCookie } from "../utils/feature.js"
+import errorHandler from "../middleware/error.js"
 
 const getAllUsers = async (req, res, next) => {
     // // we can add these queries in the query parameter and they will be included in the searchbar
