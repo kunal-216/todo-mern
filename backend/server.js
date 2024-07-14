@@ -16,12 +16,13 @@ const PORT = process.env.PORT || 4000
 // middleware
 app.use(express.json());
 app.use(cookieParser())
-app.use(cors({
-    origin: [process.env.FRONTEND_URI],
-    methods: ["GET","PUT","POST","DELETE"],
-    // for headers and cookies to reach the frontend
-    credentials: true
-}));
+app.use(cors())
+//     {
+//     origin: [process.env.FRONTEND_URI],
+//     methods: ["GET","PUT","POST","DELETE"],
+//     // for headers and cookies to reach the frontend
+//     credentials: true
+// }));
 
 
 // database connection
