@@ -54,15 +54,19 @@ const login = async (req, res, next) => {
     }
 };
 
-const logout = (req, res) => {
-    res.status(200).cookie("token", null, {
-        expires: new Date(Date.now()),
-        sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
-        secure: process.env.NODE_ENV === "Development" ? false : true,
-    }).json({
-        success: true,
-        message: "Logged out successfully"
-    })
+const logout = (req, res, next) => {
+    try {
+        res.status(200).cookie("token", null, {
+            expires: new Date(Date.now()),
+            sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+            secure: process.env.NODE_ENV === "Development" ? false : true,
+        }).json({
+            success: true,
+            message: "Logged out successfully"
+        })
+    } catch (error) {
+        next(error)
+    }
 };
 
 const getUserDetails = (req, res) => {
