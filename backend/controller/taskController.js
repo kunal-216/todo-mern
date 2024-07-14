@@ -57,21 +57,22 @@ const updateTask = async (req, res, next) => {
 
 const deleteTask = async (req, res, next) => {
     try {
-        const id = req.params.id
-        const task = await Task.findById(id)
+        const id = req.params.id;
+        const task = await Task.findById(id);
 
-        next()
+        if (!task) {
+            return next(new errorHandler('Task not found', 404));
+        }
 
-        if (!task) { return next(new errorHandler) }
-
-        await task.deleteOne()
-        res.status(200).json({
+        await task.deleteOne();
+        return res.status(200).json({
             success: true,
             message: "Task Deleted Successfully"
-        })
+        });
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
+
 
 export { newTask, getMyTasks, updateTask, deleteTask }
