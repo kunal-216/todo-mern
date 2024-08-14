@@ -4,7 +4,7 @@ import App from './App.jsx';
 import './styles/app.scss';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 
-export const server = "http://localhost:4000/api";
+export const server = "https://todo-list-d8yj.onrender.com/api";
 
 export const Context = createContext({ isAuthenticated: false });
 
