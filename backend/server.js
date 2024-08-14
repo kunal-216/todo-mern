@@ -13,16 +13,17 @@ dotenv.config()
 const app = express();
 const PORT = process.env.PORT || 4000
 
+const corsOptions = {
+    origin: [process.env.FRONTEND_URI],
+    methods: ["GET","PUT","POST","DELETE"],
+    // for headers and cookies to reach the frontend
+    credentials: true,
+}
+
 // middleware
+app.use(cors(corsOptions))
 app.use(express.json());
 app.use(cookieParser())
-app.use(cors())
-//     {
-//     origin: [process.env.FRONTEND_URI],
-//     methods: ["GET","PUT","POST","DELETE"],
-//     // for headers and cookies to reach the frontend
-//     credentials: true
-// }));
 
 
 // database connection
